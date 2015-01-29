@@ -1,0 +1,22 @@
+p {
+	margin: 0;
+}
+
+body {
+	font-family: 'Lora', serif;
+}
+
+.tweet-container {
+	background-color: #fff;
+}
+
+.tweet {
+	margin: 16px;
+	padding: 16px;
+
+	background-color: #eee;
+}
+
+.tweet-content {
+	font-style: italic;
+}

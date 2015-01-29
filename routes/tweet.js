@@ -6,11 +6,9 @@ var routes = {}
 routes.tweet = function (req, res){
 	var sess = req.session;
 	var user = sess.user;
-	console.log("session");
-	console.dir(sess);
-	console.log("==================");
+
 	var tweet = new Tweet({
-		user: user,
+		user: user.name,
 		text: req.body.tweettext
 	})
 

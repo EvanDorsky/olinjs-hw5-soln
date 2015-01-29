@@ -11,9 +11,10 @@ Tweet:
 <input type="submit">
 </form>
 <div class="tweet-container">
-	<ul>
-	{{#each tweets}}
-		<li>{{ this.text }}</li>
-	{{/each}}
-	</ul>
+{{#each tweets}}
+	<div class="tweet">
+		<p class="tweet-content">{{ this.text }}</p>
+		<p class="tweet-auth">{{ this.user }}</p>
+	</div>
+{{/each}}
 </div>
