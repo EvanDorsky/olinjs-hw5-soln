@@ -1,9 +1,10 @@
+var Tweet = require('../schema/tweet');
+
 var home = function(req, res){
-	res.render("home", {"classes": [
-		"Olin.js",
-		"other class 1",
-		"other class 2",
-		"other class 3"]
+	Tweet.find({}, function(err, list) {
+		res.render("home", {
+			tweets: list
+		});
 	});
 };
 

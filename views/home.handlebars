@@ -1,7 +1,19 @@
 <h1>Welcome Home!</h1>
-<form method="POST" action="/login">
+<form method="POST" action="/users/create">
 Username: 
 <input type="text" name="username">
-
 <input type="submit">
 </form>
+<h1>Welcome Twome!</h1>
+<form method="POST" action="/tweet">
+Tweet:
+<input type="text" name="tweettext">
+<input type="submit">
+</form>
+<div class="tweet-container">
+	<ul>
+	{{#each tweets}}
+		<li>{{ this.text }}</li>
+	{{/each}}
+	</ul>
+</div>

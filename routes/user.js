@@ -3,22 +3,27 @@ var User = require('../schema/user')
 
 var routes = {}
 
-routes.login = function (req, res){
-	var user = new User;
-	user.name = req.body.username;
-
-	user.save(function(err) {
+routes.create = function (req, res) {
+	User.findOne({name: req.body.username}, function(err, user) {
 		if (err)
-			console.error('Error: ', err);
-		console.dir(user);
-		req.session.user = user;
-	});
+			return console.error('Error: ', err);
 
-	res.redirect('/');
+		if (!user) {
+			var newUser = new User({name: req.body.username});
+			newUser.save(function(err) {
+				if (err)
+					return console.error('Error: ', err);
+				return login(req, res, newUser);
+			});
+		}
+		else
+			return login(req, res, user);
+	})
 };
 
-routes.logout = function (req, res){
-	var user = req.session.user;
+function login(req, res, user) {
+	req.session.user = user;
+	res.redirect('/');
 };
 
 module.exports = routes;

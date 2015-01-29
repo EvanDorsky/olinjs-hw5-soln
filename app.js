@@ -31,10 +31,7 @@ app.use(session({
 
 // mongo
 var db = mongoose.connection;
-
 db.on('error', console.error);
-db.once('open', function() {
-});
 
 mongoose.connect('mongodb://localhost/test');
 
@@ -42,6 +39,9 @@ mongoose.connect('mongodb://localhost/test');
 app.get('/', index.home);
 
 // user
-app.post('/login', user.login);
+app.post('/users/create', user.create);
+
+// tweet
+app.post('/tweet', tweet.tweet);
 
 app.listen(3000);
