@@ -3,7 +3,9 @@ var User = require('../schema/user')
 
 module.exports = {
 	login: function(req, res) {
-		res.render('login');
+		res.render('login', {
+			redir: req.query.redir
+		});
 	},
 
 	create: function(req, res) {

@@ -1,4 +1,7 @@
 <h1>Login</h1>
+{{#if redir}}
+You need to log in first.
+{{/if}}
 <form method="POST" action="/users/create">
 	Username
 	<input type="text" name="username">

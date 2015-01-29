@@ -1,15 +1,18 @@
 <h1>Welcome Twome!</h1>
 <a href="/login">Login</a>
 <div class="tweet-container">
-	<form method="POST" action="/tweet">
-		Tweet
-		<input type="text" name="tweettext">
-		<input type="submit">
-	</form>
+	<div class="tweet">
+		<form method="POST" action="/tweet">
+			<p class="tweet-content">Tweet</p>
+			<input type="text" name="tweettext">
+			<input type="submit">
+			<div class="tweet-auth">— {{#if user}}{{user}}{{/if}}</div>
+		</form>
+	</div>
 	{{#each tweets}}
 	<div class="tweet">
 		<p class="tweet-content">{{ this.text }}</p>
-		<p class="tweet-auth">—{{ this.user }}</p>
+		<p class="tweet-auth">— {{ this.user }}</p>
 	</div>
 	{{/each}}
 </div>
