@@ -1,23 +1,21 @@
 var mongoose = require('mongoose');
 var Tweet = require('../schema/tweet');
 
-var routes = {}
+module.exports = {
+	tweet: function (req, res){
+		var sess = req.session;
+		var user = sess.user;
 
-routes.tweet = function (req, res){
-	var sess = req.session;
-	var user = sess.user;
+		var tweet = new Tweet({
+			user: user.name,
+			text: req.body.tweettext
+		})
 
-	var tweet = new Tweet({
-		user: user.name,
-		text: req.body.tweettext
-	})
+		tweet.save(function(err) {
+			if (err)
+				console.error('Error: ', err);
+		});
 
-	tweet.save(function(err) {
-		if (err)
-			console.error('Error: ', err);
-	});
-
-	res.redirect('/');
-};
-
-module.exports = routes;
+		res.redirect('/');
+	}
+}

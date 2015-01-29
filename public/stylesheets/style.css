@@ -4,15 +4,16 @@ p {
 
 body {
 	font-family: 'Lora', serif;
+	padding: 16px; // this is pretty bad I think
 }
 
 .tweet-container {
 	background-color: #fff;
-	padding: 16px;
 }
 
 .tweet {
 	padding: 16px;
+	margin: 16px 0;
 
 	background-color: #eee;
 }
