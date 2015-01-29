@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 var User = require('../schema/user')
 
-var routes = {}
+module.exports.login = function(req, res) {
+	res.render('login');
+}
 
-routes.create = function (req, res) {
+module.exports.create = function(req, res) {
 	User.findOne({name: req.body.username}, function(err, user) {
 		if (err)
 			return console.error('Error: ', err);
@@ -25,5 +27,3 @@ function login(req, res, user) {
 	req.session.user = user;
 	res.redirect('/');
 };
-
-module.exports = routes;
