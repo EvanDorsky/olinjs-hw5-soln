@@ -1,11 +1,11 @@
-<h1>Welcome Twome!</h1>
-<a href="/login">Login</a>
+<h1>Twoter</h1>
+<a href="/logout" class="logout">Logout</a>
 <div class="tweet-container">
 	<div class="tweet">
-		<p class="tweet-content">Tweet</p>
+		<p class="tweet-content">Twote</p>
 		<form method="POST" action="/tweet" class="tweet-form">
 			<div class="tweet-input-container">
-				<input type="text" name="tweettext" class="tweet-input"><input type="submit" class="tweet-submit" value=">">
+				<input type="text" name="tweettext" class="tweet-input"><input type="submit" class="tweet-submit" value=" > ">
 			</div>
 			<div class="tweet-auth">{{#if user}}— {{user}}{{/if}}</div>
 		</form>

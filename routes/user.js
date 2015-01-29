@@ -8,6 +8,11 @@ module.exports = {
 		});
 	},
 
+	logout: function(req, res) {
+		req.session.user = null;
+		res.redirect('/');
+	},
+
 	create: function(req, res) {
 		User.findOne({name: req.body.username}, function(err, user) {
 			if (err)

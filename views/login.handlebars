@@ -1,9 +1,9 @@
 <h1>Login</h1>
 {{#if redir}}
-You need to log in first.
+You must log in to use twooter.
 {{/if}}
-<form method="POST" action="/users/create">
+<form method="POST" class="tweet-form" action="/users/create">
 	Username
-	<input type="text" name="username">
-	<input type="submit">
+	<input type="text" class="tweet-input" name="username">
+	<input type="submit" class="tweet-submit">
 </form>

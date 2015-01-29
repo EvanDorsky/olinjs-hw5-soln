@@ -38,6 +38,7 @@ mongoose.connect('mongodb://localhost/test');
 // render
 app.get('/', index.home);
 app.get('/login', user.login);
+app.get('/logout', user.logout);
 
 // user
 app.post('/users/create', user.create);
