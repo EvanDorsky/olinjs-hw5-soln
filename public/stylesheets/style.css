@@ -1,14 +1,54 @@
-p {
+* {
 	margin: 0;
 }
 
 body {
 	font-family: 'Lora', serif;
+	font-size: 18px;
 	padding: 16px; // this is pretty bad I think
 }
 
 .tweet-container {
 	background-color: #fff;
+}
+
+.tweet-form {
+	padding: 8px;
+}
+
+.tweet-input-container {
+	margin-bottom: 8px;
+}
+
+.tweet-input {
+	box-sizing: border-box;
+	font-family: 'Lora', serif;
+	font-size: 18px;
+	font-style: italic;
+
+	width: 70%;
+	margin: 0;
+	height: 40px;
+	padding: 8px;
+	border: none;
+	outline: none;
+	border-bottom: solid 2px #ccc;
+}
+
+.tweet-submit {
+	box-sizing: border-box;
+	font-family: 'Lora', serif;
+	font-size: 18px;
+	font-style: italic;
+	text-align: center;
+	color: #aaa;
+
+	height: 40px;
+	width: 40px;
+	padding: 8px;
+	border: none;
+	background-color: #ddd;
+	border-bottom: solid 2px #ccc;
 }
 
 .tweet {
