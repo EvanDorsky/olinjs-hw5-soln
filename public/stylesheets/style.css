@@ -8,15 +8,22 @@ body {
 
 .tweet-container {
 	background-color: #fff;
+	padding: 16px;
 }
 
 .tweet {
-	margin: 16px;
 	padding: 16px;
 
 	background-color: #eee;
 }
 
 .tweet-content {
+	font-size: 1.1em;
 	font-style: italic;
+}
+
+.tweet-auth {
+	color: #333;
+
+	text-align: right;
 }
