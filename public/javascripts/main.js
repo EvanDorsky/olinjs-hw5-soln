@@ -1,4 +1,13 @@
 (function() {
+	var $flash = function($el, className) {
+		$el.addClass(className);
+		setTimeout(function() {
+			$el.removeClass(className);
+		}, 200);
+
+		return $el
+	}
+	
 	var $tweetForm = $('#tweet-form');
 	// binding
 	$tweetForm.submit(function(event) {
@@ -11,11 +20,8 @@
 			tweettext: text
 		})
 		.success(function(tweet) {
-			var $tweet = $(tweet).addClass('new');
-			$('#tweet-container').prepend($tweet);
-			setTimeout(function() {
-				$tweet.removeClass('new');
-			}, 200);
+			$('#tweet-container')
+			.prepend($flash($(tweet), 'new'));
 
 			$tweetInput.val('').focus();
 		})
