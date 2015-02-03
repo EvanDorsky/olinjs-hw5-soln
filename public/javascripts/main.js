@@ -11,7 +11,11 @@
 			tweettext: text
 		})
 		.success(function(tweet) {
-			$('#tweet-container').prepend(tweet);
+			var $tweet = $(tweet).addClass('new');
+			$('#tweet-container').prepend($tweet);
+			setTimeout(function() {
+				$tweet.removeClass('new');
+			}, 200);
 
 			$tweetInput.val('').focus();
 		})
