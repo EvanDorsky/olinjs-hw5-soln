@@ -1,10 +1,11 @@
-var Tweet = require('../schema/tweet');
+var Tweet = require('../models/tweet');
 
 module.exports = {
 	home: function(req, res) {
+		console.dir(req.cookies);
 		var user = req.session.user;
 		if (!user) {
-			res.redirect("/login?redir=true");
+			res.redirect("/user/login?redir=true");
 			return;
 		}
 		Tweet.find({}, function(err, list) {

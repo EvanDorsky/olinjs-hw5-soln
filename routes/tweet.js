@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Tweet = require('../schema/tweet');
+var Tweet = require('../models/tweet');
 
 module.exports = {
 	tweet: function (req, res){
