@@ -35,12 +35,11 @@ db.on('error', console.error);
 
 mongoose.connect('mongodb://localhost/test');
 
-// render
+// routes
 app.get('/', index.home);
 
 app.use('/user', user);
 
-// tweet
-app.post('/tweet', tweet.tweet);
+app.use('/tweet', tweet);
 
 app.listen(3000);

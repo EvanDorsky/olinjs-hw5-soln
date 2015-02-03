@@ -10,18 +10,18 @@ router.post('/create', create);
 
 module.exports = router;
 
-function login (req, res) {
+function login(req, res) {
 	res.render('login', {
 		redir: req.query.redir
 	});
 }
 
-function logout (req, res) {
+function logout(req, res) {
 	req.session.user = null;
 	res.redirect('/');
 }
 
-function create (req, res) {
+function create(req, res) {
 	User.findOne({name: req.body.username}, function(err, user) {
 		if (err)
 			return console.error('Error: ', err);
