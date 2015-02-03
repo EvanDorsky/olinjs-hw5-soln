@@ -4,7 +4,8 @@
 	$tweetForm.submit(function(event) {
 		event.preventDefault();
 
-		var text = $tweetForm.find('[name="tweettext"]').val();
+		var $tweetInput = $tweetForm.find('[name="tweettext"]');
+		var text = $tweetInput.val();
 
 		$.post("/tweet/create", {
 			tweettext: text
@@ -12,7 +13,7 @@
 		.success(function(tweet) {
 			$('#tweet-container').prepend(tweet);
 
-			$tweetForm.find('[name="tweettext"]').val('');
+			$tweetInput.val('').focus();
 		})
 		.error(console.error);
 	})
