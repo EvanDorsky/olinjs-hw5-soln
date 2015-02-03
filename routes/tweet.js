@@ -8,7 +8,7 @@ router.post('/create', tweet);
 
 module.exports = router;
 
-function tweet (req, res) {
+function tweet(req, res) {
 	var user = req.session.user;
 	if (!user) {
 		res.redirect('/login?redir=true');
@@ -19,12 +19,13 @@ function tweet (req, res) {
 		creatorName: user.name,
 		created: new Date(),
 		text: req.body.tweettext
-	})
+	});
 
 	tweet.save(function(err) {
 		if (err)
 			console.error('Error: ', err);
-	});
 
-	res.redirect('/');
+		tweet.layout = false;
+		res.render('partials/tweet', tweet);
+	});
 }
