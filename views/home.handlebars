@@ -1,16 +1,26 @@
 <h1>Twoter</h1>
-<a href="/user/logout" class="logout">Logout</a>
-<div class="tweet">
-	<p class="tweet-content">Twote</p>
-	<form method="POST" action="/tweet/create" id="tweet-form">
-		<div class="tweet-input-container">
-			<input type="text" name="tweettext" class="tweet-input"><input type="submit" class="tweet-submit" value=" > ">
+<a href="/user/logout" class="logout button">Logout</a>
+<div id="container">
+	<div id="left-container">
+		<div class="tweet">
+			<p class="tweet-content">Twote</p>
+			<form method="POST" action="/tweet/create" id="tweet-form">
+				<div class="tweet-input-container">
+					<input type="text" name="tweettext" class="tweet-input"><input type="submit" class="tweet-submit" value=" > ">
+				</div>
+				<div class="tweet-auth">{{#if user}}— {{user}}{{/if}}</div>
+			</form>
 		</div>
-		<div class="tweet-auth">{{#if user}}— {{user}}{{/if}}</div>
-	</form>
-</div>
-<div id="tweet-container">
-	{{#each tweets}}
-	{{> tweet}}
-	{{/each}}
+		<div id="tweet-container">
+			{{#each tweets}}
+			{{> tweet}}
+			{{/each}}
+		</div>
+	</div>
+	<div id="right-container">
+		<h2>Users</h2>
+		{{#each users}}
+		{{> user}}
+		{{/each}}
+	</div>
 </div>

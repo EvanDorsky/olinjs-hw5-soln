@@ -21,7 +21,7 @@
 			return;
 		}
 
-		$.post("/tweet/create", {
+		$.post('/tweet/create', {
 			tweettext: text
 		})
 		.success(function(tweet) {
@@ -31,5 +31,27 @@
 			$tweetInput.val('').focus();
 		})
 		.error(console.error);
-	})
+	});
+
+	$('.user').click(function(event) {
+		event.preventDefault();
+
+		var $user = $(this);
+
+		if ($user.hasClass('highlight')) {
+			$('*').removeClass('highlight');
+			return;
+		}
+
+		$('*').removeClass('highlight');
+
+		$.get('/tweet/'+$user.html())
+		.success(function(tweets) {
+			tweets.forEach(function(tweet) {
+				$('#'+tweet._id).addClass('highlight');
+			});
+			$user.addClass('highlight');
+		})
+		.error(console.error);
+	});
 })()

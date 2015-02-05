@@ -6,15 +6,25 @@ var User = require('../models/user');
 var router = express.Router();
 
 router.post('/create', tweet);
-router.get('/', userTweets);
+router.get('/:user', userTweets);
 
 module.exports = router;
 
 function userTweets(req, res) {
-	var user = req.session.user;
-	if (!user)
-		return res.redirect('/user/login?redir=true');
+	if (req.params.user) {
+		User.findOne({ name: req.params.user }, function(err, user) {
+			tweets(user, res);
+		});
+	}
+	else {
+		var user = req.session.user;
+		if (!user)
+			return res.redirect('/user/login?redir=true');
+		tweets(user, res);
+	}
+}
 
+function tweets(user, res) {
 	Tweet.find({ _creator: user._id }, function(err, tweets) {
 		if (err)
 			return console.error('Error: ', err);
