@@ -110,10 +110,12 @@ body {
 	background-color: #eee;
 	transition:
 		background-color 500ms;
+
+	border-bottom: 2px solid #ddd;
 }
 
 .new {
-	background-color: #bef;
+	background-color: #bef !important;
 }
 
 .tweet-content {

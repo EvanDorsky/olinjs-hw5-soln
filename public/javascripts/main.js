@@ -9,12 +9,17 @@
 	}
 	
 	var $tweetForm = $('#tweet-form');
-	// binding
+
 	$tweetForm.submit(function(event) {
 		event.preventDefault();
 
 		var $tweetInput = $tweetForm.find('[name="tweettext"]');
+		
 		var text = $tweetInput.val();
+		if (!text) {
+			$flash($tweetInput, 'new').focus();
+			return;
+		}
 
 		$.post("/tweet/create", {
 			tweettext: text
