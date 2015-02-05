@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var tweetSchema = new Schema({
-	creatorName: String,
+	_creator: { type: Schema.Types.ObjectId, ref: 'User' },
 	created: Date,
 	text: String,
 });
