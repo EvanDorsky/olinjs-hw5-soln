@@ -129,6 +129,7 @@ body {
 }
 
 .tweet {
+	position: relative;
 	padding: 16px;
 	margin: 16px 0;
 
@@ -137,6 +138,25 @@ body {
 		background-color 500ms;
 
 	border-bottom: 2px solid #ddd;
+}
+
+.tweet-delete {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+
+	width: 16px;
+	height: 8px;
+
+	background-color: #bef;
+}
+
+.tweet-delete:hover {
+	background-color: #adf;
+}
+
+.tweet-delete:active {
+	background-color: #9cf;
 }
 
 .new {

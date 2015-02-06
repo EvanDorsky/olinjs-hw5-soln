@@ -5,7 +5,7 @@
 			$el.removeClass(className);
 		}, 200);
 
-		return $el
+		return $el;
 	}
 	
 	var $tweetForm = $('#tweet-form');
@@ -21,17 +21,40 @@
 			return;
 		}
 
-		$.post('/tweet/create', {
+		$.post('/tweet/', {
 			tweettext: text
 		})
 		.success(function(tweet) {
 			$('#tweet-container')
 			.prepend($flash($(tweet), 'new'));
 
+			$('.tweet-delete').one('click', tweetDelete);
+
 			$tweetInput.val('').focus();
 		})
 		.error(console.error);
 	});
+
+	function tweetDelete() {
+		var $tweet = $(this).parent();
+
+		var tweetId = $tweet.attr("id");
+
+		if (!tweetId)
+			return;
+
+		$.ajax('/tweet/', {
+			type: 'DELETE',
+			data: { tweetId: tweetId }
+		})
+		.success(function(status) {
+			if (status === 'success')
+				$tweet.remove();
+		})
+		.error(console.error);
+	};
+
+	$('.tweet-delete').one('click', tweetDelete);
 
 	$('.user').click(function(event) {
 		event.preventDefault();
