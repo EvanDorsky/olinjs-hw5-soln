@@ -12,20 +12,18 @@ router.get('/:user', userTweets);
 module.exports = router;
 
 function remove(req, res) {
-	User.findById(req.session.passport.user, function(err, user) {
-		Tweet.findById(req.body.tweetId, function(err, tweet) {
-			if (err)
-				return console.error('Error: ', err);
+	Tweet.findById(req.body.tweetId, function(err, tweet) {
+		if (err)
+			return console.error('Error: ', err);
 
-			if (tweet._creator == user._id) {
-				tweet.remove(function(err) {
-					if (err)
-						return console.error('Error: ', err);
+		if (tweet._creator == req.session.passport.user) {
+			tweet.remove(function(err) {
+				if (err)
+					return console.error('Error: ', err);
 
-					res.send('success');
-				});
-			}
-		});
+				res.send('success');
+			});
+		}
 	});
 }
 
