@@ -38,7 +38,7 @@ var db = mongoose.connection;
 db.on('error', console.error);
 
 var MONGO = process.env.MONGOURI_TWOTER || 'mongodb://localhost/test';
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(MONGO);
 
 // routes
 app.get('/', ensureAuthenticated, index.home);
