@@ -6,6 +6,9 @@ var path = require('path');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var tweet = require('./routes/tweet');
+var auth = require('./routes/auth').router;
+var passport = require('./routes/auth').passport;
+var ensureAuthenticated = require('./routes/auth').auth;
 
 var mongoose = require('mongoose');
 var logger = require('morgan');
@@ -28,17 +31,20 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
-
+app.use(passport.initialize());
+app.use(passport.session());
 // mongo
 var db = mongoose.connection;
 db.on('error', console.error);
 
+var MONGO = process.env.MONGOURI_TWOTER || 'mongodb://localhost/test';
 mongoose.connect('mongodb://localhost/test');
 
 // routes
-app.get('/', index.home);
+app.get('/', ensureAuthenticated, index.home);
 
 app.use('/user', user);
+app.use('/auth', auth);
 
 app.use('/tweet', tweet);
 

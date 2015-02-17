@@ -12,29 +12,26 @@ router.get('/:user', userTweets);
 module.exports = router;
 
 function remove(req, res) {
-	var user = req.session.user;
-	if (!user)
-		return res.redirect('/user/login?redir=true');
+	User.findById(req.session.passport.user, function(err, user) {
+		Tweet.findById(req.body.tweetId, function(err, tweet) {
+			if (err)
+				return console.error('Error: ', err);
 
-	Tweet.findById(req.body.tweetId, function(err, tweet) {
-		if (err)
-			return console.error('Error: ', err);
+			if (tweet._creator == user._id) {
+				tweet.remove(function(err) {
+					if (err)
+						return console.error('Error: ', err);
 
-		if (tweet._creator == user._id) {
-			tweet.remove(function(err) {
-				if (err)
-					return console.error('Error: ', err);
-
-				res.send('success');
-			});
-		}
+					res.send('success');
+				});
+			}
+		});
 	});
 }
 
 function userTweets(req, res) {
-	var user = req.session.user;
-	if (!user)
-		return res.redirect('/user/login?redir=true');
+	console.log('USER TWEETS BE LIKE');
+	console.log(req.params.user);
 	if (req.params.user) {
 		User.findOne({ name: req.params.user }, function(err, user) {
 			if (err)
@@ -44,7 +41,9 @@ function userTweets(req, res) {
 		});
 	}
 	else
-		tweets(user, res);
+		User.findById(req.session.passport.user, function(err, user) {
+			tweets(user, res);
+	});
 }
 
 function tweets(user, res) {
@@ -57,21 +56,16 @@ function tweets(user, res) {
 }
 
 function tweet(req, res) {
-	var user = req.session.user;
-	if (!user)
-		return res.redirect('/user/login?redir=true');
+	User.findById(req.session.passport.user, function(err, user) {
+			if (err)
+				return console.error('Error: ', err);
+		var tweet = new Tweet({
+			_creator: user._id,
+			created: new Date(),
+			text: req.body.tweettext
+		});
 
-	var tweet = new Tweet({
-		_creator: user._id,
-		created: new Date(),
-		text: req.body.tweettext
-	});
-
-	tweet.save(function(err) {
-		if (err)
-			return console.error('Error: ', err);
-		
-		User.findById(user._id, function(err, user) {
+		tweet.save(function(err) {
 			if (err)
 				return console.error('Error: ', err);
 
